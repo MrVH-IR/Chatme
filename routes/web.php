@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\PrivateChatController;
 
 
 Route::get('/register', function () {
@@ -20,10 +21,14 @@ Route::get('/home', function () {
 
 
 Route::middleware('auth')->group(function () {
-    // صفحه چت عمومی
     Route::get('/chat/public', [ChatController::class, 'publicChat'])->name('chat.public');
 
-    // ارسال پیام در چت
     Route::post('/chat/send', [ChatController::class, 'sendMessage'])->name('chat.sendMessage');
     Route::get('/chat/messages', [ChatController::class, 'getMessages'])->name('chat.messages');
+
+    Route::get('/chat/private', [PrivateChatController::class, 'privateChat'])->name('chat.private');
+    Route::post('/chat/private/invite', [PrivateChatController::class, 'sendInvite']);
+    Route::post('/chat/private/handle-invite', [PrivateChatController::class, 'handleInvite']);
+    Route::post('/chat/private/send', [PrivateChatController::class, 'sendMessage']);
+    Route::get('/chat/private/messages/{room}', [PrivateChatController::class, 'getMessages']);
 });

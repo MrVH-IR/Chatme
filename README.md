@@ -57,6 +57,8 @@ Start the Development Server
 
     php artisan serve
 
+    npm run dev
+
     You can access the app in your browser at http://127.0.0.1:8000.
 
 Usage

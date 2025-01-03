@@ -1,0 +1,50 @@
+.user-item {
+    transition: all 0.3s ease;
+}
+
+.user-item:hover {
+    background-color: #fff5e6;
+}
+
+#notification-area {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.notification {
+    animation: slideIn 0.3s ease;
+}
+
+#invitePanel {
+    transform-origin: top left;
+    transition: all 0.3s ease;
+}
+
+#invitePanel.hidden {
+    transform: scale(0.95);
+    opacity: 0;
+    pointer-events: none;
+}
+
+#invitePanelToggle {
+    transition: all 0.3s ease;
+}
+
+#invitePanelToggle:hover {
+    transform: scale(1.1);
+    background-color: #f7b945;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

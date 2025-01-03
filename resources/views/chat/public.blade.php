@@ -10,9 +10,9 @@
     <div class="w-3/4 p-4">
         <h2 class="text-xl mb-4">Public Chat</h2>
 
-        <!-- تاریخچه چت (شما باید از دیتابیس برای نمایش این‌ها استفاده کنید) -->
+
         <div id="chat-history" class="mb-4">
-            <!-- چت‌ها در اینجا نمایش داده می‌شود -->
+
             @foreach ($messages as $message)
                 <div class="message">
                     <strong>{{ $message->user->name }}:</strong>
@@ -21,7 +21,7 @@
             @endforeach
         </div>
 
-        <!-- فرم ارسال پیام -->
+
         <form class="flex gap-4" id="chat-form">
             @csrf
             <textarea name="message" rows="3" placeholder="Press Enter to send message..."

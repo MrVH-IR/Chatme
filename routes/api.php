@@ -10,3 +10,9 @@ use App\Http\Controllers\AuthController;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/api/auth/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth.sanctum');
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/invite/send', [PrivateChatController::class, 'apiSendInvite']);
+    Route::post('/invite/accept', [PrivateChatController::class, 'apiHandleInvite']);
+    Route::get('/invite/pending', [PrivateChatController::class, 'getPendingInvites']);
+});

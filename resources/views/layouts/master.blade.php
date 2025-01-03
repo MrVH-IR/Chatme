@@ -80,7 +80,7 @@
                             <a href="{{ route('chat.public') }}" class="block px-4 py-2">Global Chat</a>
                         </li>
                         <li class="hover:bg-white hover:text-[#eb2f06] rounded-md">
-                            <a href="/private-chat" class="block px-4 py-2">Private Chat</a>
+                            <a href="{{ route('chat.private') }}" class="block px-4 py-2">Private Chat</a>
                         </li>
                     </ul>
                 </li>

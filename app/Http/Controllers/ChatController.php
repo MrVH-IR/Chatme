@@ -10,12 +10,12 @@ class ChatController extends BaseController
 {
     public function __construct()
     {
-        $this->middleware('auth'); // فقط کاربران لاگین شده می‌توانند به این صفحات دسترسی داشته باشند
+        $this->middleware('auth');
     }
 
     public function publicChat()
     {
-        // گرفتن پیام‌های چت از دیتابیس
+
         $messages = Message::latest()->get();
 
         return view('chat.public', compact('messages'));
