@@ -24,34 +24,34 @@ Installation
 
 To get started with the ChatMe application, follow these steps:
 
-    Clone the Repository
+Clone the Repository
 
-git clone https://github.com/MrVH-IR/ChatMe.git
-cd ChatMe
+    git clone https://github.com/MrVH-IR/ChatMe.git
+    cd ChatMe
 
 
 Install Dependencies
 
 Run the following command to install the necessary PHP and JavaScript dependencies:
 
-composer install
-npm install
+    composer install
+    npm install
 
 Environment Configuration
 
 Copy the .env.example file to .env and configure your database settings:
 
-cp .env.example .env
+    cp .env.example .env
 
 Set your database credentials and any other necessary configurations.
 
 Generate App Key
 
-php artisan key:generate
+    php artisan key:generate
 
 Run Migrations
 
-php artisan migrate
+    php artisan migrate
 
 Start the Development Server
 
