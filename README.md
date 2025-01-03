@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# Chatme
-ChatMe is a real-time messaging platform designed to facilitate global and anonymous communication.
-=======
 ChatMe - Real-Time Global and Anonymous Chat Application
 Description
 
@@ -29,37 +25,38 @@ Installation
 To get started with the ChatMe application, follow these steps:
 
     Clone the Repository
-``
+
 git clone https://github.com/MrVH-IR/ChatMe.git
 cd ChatMe
-``
+
+
 Install Dependencies
 
 Run the following command to install the necessary PHP and JavaScript dependencies:
-``
+
 composer install
 npm install
-``
+
 Environment Configuration
 
 Copy the .env.example file to .env and configure your database settings:
-``
+
 cp .env.example .env
-``
+
 Set your database credentials and any other necessary configurations.
 
 Generate App Key
-``
+
 php artisan key:generate
-``
+
 Run Migrations
-``
+
 php artisan migrate
-``
+
 Start the Development Server
-``
+
     php artisan serve
-``
+
     You can access the app in your browser at http://127.0.0.1:8000.
 
 Usage
@@ -99,4 +96,3 @@ Notes:
     Feel free to modify the installation steps or any other part of the README based on how you have set up the project or any specific configuration you might have.
 
 This should provide clear guidance for anyone visiting your repository and wanting to use or contribute to your project.
->>>>>>> fdd5ce4 (Initial Commit)
