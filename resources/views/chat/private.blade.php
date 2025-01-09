@@ -34,7 +34,7 @@
             <h2 class="text-xl mb-4 text-[#fdcb6e]">Users</h2>
             <div id="users-list">
                 @foreach ($users as $user)
-                    <div class="user-item p-2 hover:bg-gray-100 cursor-pointer border-b" data-user-id="{{ $user->user_id }}"
+                    <div class="user-item p-2 hover:bg-gray-100 cursor-pointer border-b" data-user-id="{{ $user->id }}"
                         data-user-name="{{ $user->name }} {{ $user->lastname }}">
                         <i class="fas fa-user mr-2 text-[#fdcb6e]"></i>
                         {{ $user->name }} {{ $user->lastname }}
@@ -47,14 +47,7 @@
         <div class="w-3/4 p-4 bg-white rounded-r shadow-lg" id="chat-area">
             <h2 class="text-xl mb-4 text-[#fdcb6e]">Private Chat</h2>
             <div id="chat-history" class="mb-4 h-[60vh] overflow-y-auto">
-                @if (isset($messages))
-                    @foreach ($messages as $message)
-                        <div class="message">
-                            <strong>{{ $message->sender->name }}:</strong>
-                            <p>{{ $message->content }}</p>
-                        </div>
-                    @endforeach
-                @endif
+                <!-- Chat messages will be appended here -->
             </div>
 
             <form class="flex gap-4" id="chat-form">
@@ -70,4 +63,30 @@
 
     <!-- Notification Area -->
     <div id="notification-area" class="fixed top-4 right-4 z-50"></div>
+
+    <!-- Embed users data in a hidden element -->
+    <div id="users-data" style="display: none;">@json($users)</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch("{{ route('chat.status') }}")
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error('Error:', error));
+
+            // Example JavaScript code to dynamically add users to the user list
+            const usersList = document.getElementById('users-list');
+            const users = JSON.parse(document.getElementById('users-data').textContent); // Pass the users data from PHP to JavaScript
+
+            usersList.innerHTML = ''; // Clear the current list
+            users.forEach(user => {
+                const userItem = document.createElement('div');
+                userItem.classList.add('user-item', 'p-2', 'hover:bg-gray-100', 'cursor-pointer', 'border-b');
+                userItem.dataset.userId = user.id;
+                userItem.dataset.userName = `${user.name} ${user.lastname}`;
+                userItem.innerHTML = `<i class="fas fa-user mr-2 text-[#fdcb6e]"></i> ${user.name} ${user.lastname}`;
+                usersList.appendChild(userItem);
+            });
+        });
+    </script>
 @endsection

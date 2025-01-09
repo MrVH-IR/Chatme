@@ -71,4 +71,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Start polling for new messages
     setInterval(fetchNewMessages, 3000);
+
+    fetch("{{ route('chat.status') }}")
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
+
+    // Example JavaScript code to dynamically add users to the user list
+    const usersList = document.getElementById('users-list');
+    const users = JSON.parse(document.getElementById('users-data').textContent); // Pass the users data from PHP to JavaScript
+
+    usersList.innerHTML = ''; // Clear the current list
+    users.forEach(user => {
+        const userItem = document.createElement('div');
+        userItem.classList.add('user-item', 'p-2', 'hover:bg-gray-100', 'cursor-pointer', 'border-b');
+        userItem.dataset.userId = user.user_id;
+        userItem.dataset.userName = `${user.name} ${user.lastname}`;
+        userItem.innerHTML = `<i class="fas fa-user mr-2 text-[#fdcb6e]"></i> ${user.name} ${user.lastname}`;
+        usersList.appendChild(userItem);
+    });
 });

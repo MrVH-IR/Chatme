@@ -18,11 +18,12 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/home', function () {
     return view('home');
 })->name('home')->middleware('auth');
-
+Route::get('/', function () {
+    return view('home');
+})->name('home')->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::get('/chat/public', [ChatController::class, 'publicChat'])->name('chat.public');
-
     Route::post('/chat/send', [ChatController::class, 'sendMessage'])->name('chat.sendMessage');
     Route::get('/chat/messages', [ChatController::class, 'getMessages'])->name('chat.messages');
 
@@ -31,4 +32,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/chat/private/handle-invite', [PrivateChatController::class, 'handleInvite']);
     Route::post('/chat/private/send', [PrivateChatController::class, 'sendMessage']);
     Route::get('/chat/private/messages/{room}', [PrivateChatController::class, 'getMessages']);
+
+    // Add route for status function
+    Route::get('/chat/status', [ChatController::class, 'status'])->name('chat.status');
+    Route::get('/chat/private/status', [PrivateChatController::class, 'status'])->name('chat.private.status');
 });
